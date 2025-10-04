@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Building2, Users, Calendar, Home, Laptop, Users2, CheckCircle, Star, ArrowRight, Shield, Clock, Wifi, MapPin } from "lucide-react";
+import Loader from "@/components/Loader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -15,13 +16,24 @@ import DoubleSeat from "../assets/DoubleSeat.jpg";
 import conferenceRoom from "../assets/conferenceRoom.jpg";  
 import privatecabin from "../assets/privatecabin.jpg";
 import VirtualOffice from '../assets/virtualoffice.jpg'
+import receptionArea from '../assets/recpetion.jpg'
 
+// Add container styles
+const containerStyle = "px-2 sm:px-4 md:px-6 lg:px-8 max-w-7xl mx-auto";
 
 const Homepage = () => {
+  const [loading, setLoading] = useState(true);
   const servicesRef = useRef(null);
   const benefitsRef = useRef(null);
   const pricingRef = useRef(null);
   const testimonialsRef = useRef(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
   
   const servicesInView = useInView(servicesRef, { once: true, margin: "-100px" });
   const benefitsInView = useInView(benefitsRef, { once: true, margin: "-100px" });
@@ -42,12 +54,6 @@ const Homepage = () => {
     image: DoubleSeat,
   },
   {
-    icon: <Users className="h-8 w-8 text-primary" />,
-    title: "Triple Seat",
-    description: "Collaborative workspace for three people, with flexible pricing options.",
-    image: conferenceRoom,
-  },
-  {
     icon: <Building2 className="h-8 w-8 text-primary" />,
     title: "Quadruple Seat",
     description: "Workspace for four, ideal for small teams with full access to amenities.",
@@ -64,6 +70,12 @@ const Homepage = () => {
     title: "Conference Room",
     description: "Bookable meeting rooms for professional discussions and team collaborations.",
     image: conferenceRoom,
+  },
+  {
+    icon: <Users className="h-8 w-8 text-primary" />,
+    title: "Reception Area",
+    description: "Professional reception services with modern amenities and comfortable waiting space.",
+    image: receptionArea,
   },
 ];
 
@@ -137,9 +149,10 @@ const Homepage = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden max-w-[100vw]">
+      {loading && <Loader />}
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center">
+      <section className="relative min-h-[85vh] sm:min-h-screen flex items-center justify-center">
         <div className="absolute inset-0">
           <motion.img
             initial={{ scale: 1.1, opacity: 0 }}

@@ -277,6 +277,107 @@ const Pricing = () => {
         </div>
       </section>
 
+      {/* Virtual Membership Plans */}
+      <section className="py-20 bg-secondary">
+        <div className="container-custom">
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            animate={plansInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-2xl md:text-3xl font-semibold mb-4">Virtual Membership Plans</h2>
+            <p className="text-base text-muted-foreground max-w-2xl mx-auto">
+              Professional business address and virtual office solutions
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {[
+              {
+                name: "Platinum Plan",
+                price: "10499",
+                features: [
+                  "Corporate address",
+                  "Company and gst registration (Supporting documents)",
+                  "Front desk support",
+                  "12 seats conference room",
+                  "Monthly one hour complimentary",
+                  "Bank account support",
+                  "Lounge access(Monthly one hour)",
+                  "Finger access"
+                ]
+              },
+              {
+                name: "Silver Plan",
+                price: "9499",
+                features: [
+                  "Corporate address",
+                  "Courier handling",
+                  "Front desk support",
+                  "12 seats conference room",
+                  "Monthly one hour complimentary"
+                ],
+                popular: true
+              },
+              {
+                name: "Gold Plan",
+                price: "11499",
+                features: [
+                  "Corporate address",
+                  "Company and gst registration (Supporting documents)",
+                  "Front desk support", 
+                  "12 seats conference room",
+                  "Monthly one hour complimentary",
+                  "Bank account support"
+                ]
+              }
+            ].map((plan, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                animate={plansInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{ delay: index * 0.2, duration: 0.8 }}
+                whileHover={{
+                  y: -10,
+                  scale: 1.02,
+                  transition: { duration: 0.3 }
+                }}
+              >
+                <Card className={`relative h-full flex flex-col ${plan.popular ? 'border-primary shadow-lg' : ''}`}>
+                  {plan.popular && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={plansInView ? { opacity: 1, y: 0 } : {}}
+                      className="absolute -top-4 left-0 right-0 text-center"
+                    >
+                      <Badge className="bg-primary text-primary-foreground">Most Popular</Badge>
+                    </motion.div>
+                  )}
+                  <CardHeader className="text-center">
+                    <CardTitle className="text-xl mb-2">{plan.name}</CardTitle>
+                    <div className="text-3xl font-bold">₹{plan.price}/YR</div>
+                  </CardHeader>
+                  <CardContent className="flex flex-col flex-1">
+                    <ul className="space-y-3 flex-1">
+                      {plan.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center gap-2">
+                          <Check className="w-5 h-5 text-primary" />
+                          <span className="text-sm">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Button className="w-full mt-6" variant={plan.popular ? "default" : "outline"}>
+                      Get Started
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Additional Services */}
       <section ref={additionalRef} className="py-20 bg-secondary">
         <div className="container-custom">
