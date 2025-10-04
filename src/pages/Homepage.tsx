@@ -13,8 +13,8 @@ import heroLogo from '../assets/logo_in_banner.png'
 import dedicatedDesk from '../assets/dedicatedDesk.jpg';
 import DoubleSeat from "../assets/DoubleSeat.jpg";
 import conferenceRoom from "../assets/conferenceRoom.jpg";  
-import privateCabin from "../assets/privateCabin.jpg";
-import VirtualOffice from '../assets/VirtualOffice.jpg'
+import privatecabin from "../assets/privatecabin.jpg";
+import VirtualOffice from '../assets/virtualoffice.jpg'
 
 
 const Homepage = () => {
@@ -51,7 +51,7 @@ const Homepage = () => {
     icon: <Building2 className="h-8 w-8 text-primary" />,
     title: "Quadruple Seat",
     description: "Workspace for four, ideal for small teams with full access to amenities.",
-    image: privateCabin,
+    image: privatecabin,
   },
   {
     icon: <Users2 className="h-8 w-8 text-primary" />,

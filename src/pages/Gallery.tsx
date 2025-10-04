@@ -9,7 +9,7 @@ import heroImage from '../assets/banner.jpg'
 import dedicatedDesk from '../assets/dedicatedDesk.jpg';
 import DoubleSeat from "../assets/DoubleSeat.jpg";
 import conferenceRoom from "../assets/conferenceRoom.jpg";  
-import privateCabin from "../assets/privatecabin.jpg";
+import privatecabin from "../assets/privatecabin.jpg";
 import VirtualOffice from '../assets/virtualoffice.jpg'
 import pantryImage from '../assets/pantry.jpg';
 import loungeImage from '../assets/Lounge.jpg';
@@ -27,7 +27,7 @@ const galleryImages = [
   },
   {
     id: 3,
-    src: privateCabin,
+    src: privatecabin,
     alt: "Private office cabin",
     category: "Private Offices",
   },
